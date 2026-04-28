@@ -15,8 +15,8 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
       <button
         onClick={onToggleSidebar}
         className="lg:hidden"
-        aria-label="Toggle sidebar"
-      >
+        aria-label="Toggle sidebar">
+        
         <Menu className="size-5 text-muted-foreground" />
       </button>
 
@@ -26,16 +26,16 @@ export default function TopBar({ onToggleSidebar }: TopBarProps) {
           placeholder="Search prompts, tags, categories…"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-9 border-border bg-muted/50 pl-9 text-sm placeholder:text-muted-foreground/70"
-        />
+          className="h-9 border-border bg-muted/50 pl-9 text-sm placeholder:text-muted-foreground/70" />
+        
       </div>
 
       <div className="ml-auto flex items-center gap-3">
         <div className="hidden items-center gap-2 sm:flex">
           <div className="size-8 rounded-full bg-gradient-to-br from-primary to-secondary" />
-          <span className="text-sm font-medium text-foreground">Alex</span>
+          <span className="text-sm font-medium text-foreground">Cvetanichin</span>
         </div>
       </div>
-    </header>
-  );
+    </header>);
+
 }
