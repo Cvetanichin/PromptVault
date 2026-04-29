@@ -7,6 +7,7 @@ import {
   Trash2,
   FolderOpen,
   Clock,
+  FileDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +16,7 @@ import ModelBadge from '@/components/features/ModelBadge';
 import QualityBadge from '@/components/features/QualityBadge';
 import AnalysisPanel from '@/components/features/AnalysisPanel';
 import VersionTimeline from '@/components/features/VersionTimeline';
+import { exportPromptAsMarkdown } from '@/lib/importExport';
 import { cn } from '@/lib/utils';
 
 export default function PromptDetail() {
@@ -47,6 +49,11 @@ export default function PromptDetail() {
   const handleCopy = () => {
     navigator.clipboard.writeText(displayContent);
     toast({ title: 'Copied', description: 'Prompt content copied to clipboard.' });
+  };
+
+  const handleExportMd = () => {
+    exportPromptAsMarkdown(prompt);
+    toast({ title: 'Exported', description: `"${prompt.title}" saved as Markdown.` });
   };
 
   const handleDelete = () => {
@@ -93,6 +100,9 @@ export default function PromptDetail() {
                         : 'text-muted-foreground'
                     )}
                   />
+                </Button>
+                <Button variant="ghost" size="icon" onClick={handleExportMd} aria-label="Export as Markdown">
+                  <FileDown className="size-4 text-muted-foreground" />
                 </Button>
                 <Button variant="ghost" size="icon" onClick={handleCopy} aria-label="Copy prompt">
                   <Copy className="size-4 text-muted-foreground" />

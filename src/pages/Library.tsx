@@ -1,4 +1,5 @@
 import { Star, SlidersHorizontal } from 'lucide-react';
+import ImportExportDialog from '@/components/features/ImportExportDialog';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -37,7 +38,10 @@ export default function Library() {
             prompts found
           </p>
         </div>
-        <AddPromptDialog />
+        <div className="flex items-center gap-2">
+          <ImportExportDialog />
+          <AddPromptDialog />
+        </div>
       </div>
 
       {/* Filters */}
