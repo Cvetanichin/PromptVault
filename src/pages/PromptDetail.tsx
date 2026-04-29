@@ -16,7 +16,9 @@ import ModelBadge from '@/components/features/ModelBadge';
 import QualityBadge from '@/components/features/QualityBadge';
 import AnalysisPanel from '@/components/features/AnalysisPanel';
 import VersionTimeline from '@/components/features/VersionTimeline';
+import PromptOptimizer from '@/components/features/PromptOptimizer';
 import { exportPromptAsMarkdown } from '@/lib/importExport';
+import { generateImprovements } from '@/lib/promptOptimizer';
 import { cn } from '@/lib/utils';
 
 export default function PromptDetail() {
@@ -26,6 +28,7 @@ export default function PromptDetail() {
   const prompt = usePromptStore((s) => s.prompts.find((p) => p.id === id));
   const toggleFavorite = usePromptStore((s) => s.toggleFavorite);
   const deletePrompt = usePromptStore((s) => s.deletePrompt);
+  const updatePrompt = usePromptStore((s) => s.updatePrompt);
 
   const [activeVersionId, setActiveVersionId] = useState<string | null>(null);
 
@@ -176,6 +179,21 @@ export default function PromptDetail() {
                 {displayContent}
               </p>
             </div>
+          </div>
+
+          {/* Prompt Optimizer */}
+          <div className="rounded-lg border border-border bg-card p-5">
+            <PromptOptimizer
+              content={displayContent}
+              category={prompt.category}
+              onApply={(optimized) => {
+                updatePrompt(prompt.id, {
+                  content: optimized,
+                  improvements: generateImprovements(optimized, prompt.category),
+                  updatedAt: new Date().toISOString(),
+                });
+              }}
+            />
           </div>
 
           {/* Version Timeline */}

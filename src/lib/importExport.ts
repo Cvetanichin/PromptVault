@@ -1,4 +1,5 @@
 import type { Prompt, PromptCategory, LLMModel } from '@/types';
+import { generateImprovements } from '@/lib/promptOptimizer';
 
 // --- EXPORT ---
 
@@ -234,11 +235,7 @@ function createPromptFromText(text: string): Prompt | null {
     isFavorite: false,
     createdAt: now,
     updatedAt: now,
-    improvements: [
-      'Review auto-detected category for accuracy',
-      'Add specific model preferences based on testing',
-      'Consider adding output format specifications',
-    ],
+    improvements: generateImprovements(content, category),
   };
 }
 
@@ -290,10 +287,9 @@ function validateAndNormalizePrompt(item: any, index: number): { prompt?: Prompt
     isFavorite: item.isFavorite === true,
     createdAt: item.createdAt || now,
     updatedAt: item.updatedAt || now,
-    improvements: Array.isArray(item.improvements) ? item.improvements : [
-      'Review imported prompt for accuracy',
-      'Test across models and rate effectiveness',
-    ],
+    improvements: Array.isArray(item.improvements) && item.improvements.length > 0
+      ? item.improvements
+      : generateImprovements(content || title, category),
   };
 
   const warning = (!item.category || !item.models)

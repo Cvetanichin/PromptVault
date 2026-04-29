@@ -20,6 +20,8 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { usePromptStore } from '@/stores/promptStore';
 import { ALL_CATEGORIES, ALL_MODELS } from '@/constants/mockData';
+import { generateImprovements } from '@/lib/promptOptimizer';
+import PromptOptimizer from '@/components/features/PromptOptimizer';
 import type { Prompt, LLMModel, PromptCategory } from '@/types';
 
 export default function AddPromptDialog() {
@@ -49,6 +51,8 @@ export default function AddPromptDialog() {
       return;
     }
 
+    const improvements = generateImprovements(content, category as PromptCategory);
+
     const prompt: Prompt = {
       id: `p-${Date.now()}`,
       title,
@@ -74,9 +78,8 @@ export default function AddPromptDialog() {
       isFavorite: false,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      improvements: [
+      improvements: improvements.length > 0 ? improvements : [
         'Run this prompt a few times to evaluate consistency',
-        'Consider adding output format specifications',
       ],
     };
 
@@ -140,6 +143,16 @@ export default function AddPromptDialog() {
               rows={5}
               className="border-border bg-muted/50 font-mono text-xs"
             />
+            {content.trim().length > 10 && (
+              <div className="mt-3">
+                <PromptOptimizer
+                  content={content}
+                  category={category as PromptCategory | undefined}
+                  onApply={(optimized) => setContent(optimized)}
+                  compact
+                />
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
