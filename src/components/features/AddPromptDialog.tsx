@@ -22,6 +22,8 @@ import { usePromptStore } from '@/stores/promptStore';
 import { ALL_CATEGORIES, ALL_MODELS } from '@/constants/mockData';
 import { generateImprovements } from '@/lib/promptOptimizer';
 import PromptOptimizer from '@/components/features/PromptOptimizer';
+import PresetSelector from '@/components/features/PresetSelector';
+import type { PromptPreset } from '@/constants/presets';
 import type { Prompt, LLMModel, PromptCategory } from '@/types';
 
 export default function AddPromptDialog() {
@@ -34,6 +36,16 @@ export default function AddPromptDialog() {
   const [tags, setTags] = useState('');
   const addPrompt = usePromptStore((s) => s.addPrompt);
   const { toast } = useToast();
+
+  const handlePresetSelect = (preset: PromptPreset) => {
+    setTitle(preset.name);
+    setDescription(preset.description);
+    setContent(preset.content);
+    setCategory(preset.category);
+    setSelectedModels(preset.models as string[]);
+    setTags(preset.tags.join(', '));
+    toast({ title: 'Preset loaded', description: `"${preset.name}" template applied. Customize the [PLACEHOLDERS] for your use case.` });
+  };
 
   const toggleModel = (model: string) => {
     setSelectedModels((prev) =>
@@ -108,6 +120,9 @@ export default function AddPromptDialog() {
         </DialogHeader>
 
         <div className="mt-4 space-y-4">
+          {/* Preset Selector */}
+          <PresetSelector category={category} onSelect={handlePresetSelect} />
+
           <div>
             <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Title
