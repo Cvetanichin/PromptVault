@@ -1,61 +1,81 @@
-# Welcome to your OnSpace project
+# PromptVault
 
-## How can I edit this code?
+Canonical repository for the Cvetanichin PromptLibrary.
 
-There are several ways of editing your application.
+PromptVault stores the curated prompt library as versioned data, readable prompt files, documentation, and a React app shell for browsing and using prompts.
 
-**Use OnSpace**
+## Source Of Truth
 
-Simply visit the [OnSpace Project]() and start prompting.
+The durable source of truth is:
 
-Changes made via OnSpace will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in OnSpace.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```text
+data/prompt_library_v7.json
 ```
 
-**Edit a file directly in GitHub**
+Generated or mirrored surfaces include:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `prompts/` - one Markdown file per library prompt.
+- `system-prompts/` - one Markdown file per reusable system prompt.
+- `src/data/prompts.generated.ts` - app-ready prompt data generated from JSON.
+- `src/constants/mockData.ts` - compatibility re-export for the existing app.
 
-**Use GitHub Codespaces**
+Do not hand-edit generated prompt Markdown or app data unless you are intentionally replacing the generation flow. Edit the canonical JSON, then regenerate.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Repository Layout
 
-## What technologies are used for this project?
+```text
+data/
+  prompt_library_v7.json
+  system_prompts.json
+  prompt_gaps.json
+docs/
+  taxonomy.md
+  import-rules.md
+  quality-scoring.md
+  storage-architecture.md
+  changelog.md
+prompts/
+system-prompts/
+sources/
+  downloads/
+  google-drive/
+  github/
+scripts/
+  validate-library.ps1
+  export-jsx-prompts.ps1
+  import-candidates.ps1
+src/
+  data/prompts.generated.ts
+```
 
-This project is built with:
+## Current Library
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Version: `7.6`
+- Last updated: `2026-05-29`
+- Prompts: `96`
+- System prompts: `15`
+- Known gaps: `23`
 
-## How can I deploy this project?
+## Validation
 
-Simply open [OnSpace]() and click on Share -> Publish.
+From the repository root:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-library.ps1
+```
+
+The validator checks JSON parsing, metadata counts, required prompt fields, duplicate IDs, generated Markdown counts, and generated app data.
+
+## Regeneration
+
+After editing `data/prompt_library_v7.json`, regenerate app data and Markdown files:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\export-jsx-prompts.ps1
+```
+
+## Storage Policy
+
+PromptVault is the canonical storage layer. Google Drive remains the readable archive and intake layer. Supabase can be added later as an app/search backend. Figma remains a design-reference surface. Calendar can support review cadence and maintenance reminders.
+
+See [docs/storage-architecture.md](docs/storage-architecture.md) for the full decision.

@@ -1,0 +1,17 @@
+{
+  "scan_date": "2026-05-29",
+  "canonical_source": "data/prompt_library_v7.json",
+  "local_source_file": "C:\\Users\\cvetanichin\\Downloads\\prompt_library_v7.json",
+  "imported_prompt_count": 96,
+  "imported_system_prompt_count": 15,
+  "generated_files": {
+    "prompt_markdown_count": 96,
+    "system_prompt_markdown_count": 15,
+    "app_generated_data": "src/data/prompts.generated.ts"
+  },
+  "notes": [
+    "Downloads remains an intake/staging area only.",
+    "Stable PL/SP IDs are preserved from prompt_library_v7.json.",
+    "App data is generated from canonical JSON."
+  ]
+}

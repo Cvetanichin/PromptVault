@@ -1,0 +1,214 @@
+{
+  "metadata": {
+    "name": "Cvetanichin Prompt Library",
+    "version": "7.6",
+    "last_updated": "2026-05-29",
+    "total_prompts": 96,
+    "total_system_prompts": 15,
+    "total_gaps": 23,
+    "schema": "v7.6 ? curated Downloads scan; JSON source with JSX embedded mirror",
+    "update_note": "+12 curated prompts added from May 2026 Downloads scan; rough imports deduplicated and rewritten for reuse.",
+    "reference_export": "prompt-library-v75.pdf showed v7.5 scan state; v7.6 is the curated machine-readable update."
+  },
+  "gaps": [
+    {
+      "id": "GAP-01",
+      "category": "Proposal Writing",
+      "name": "EU Concept Note Template",
+      "priority": "critical",
+      "why": "Filled by PL-077 (EU Concept Note Writer — Full Template). Full 3-section structure based on official EU format.",
+      "frequency": "Very High",
+      "status": "filled",
+      "filled_by": "PL-077",
+      "filled_date": "2026-05-23"
+    },
+    {
+      "id": "GAP-02",
+      "category": "Proposal Writing",
+      "name": "Terms of Reference (ToR) Drafter",
+      "priority": "critical",
+      "why": "Required for consultants, evaluators, service providers",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-03",
+      "category": "Donor Reporting",
+      "name": "Financial Narrative Writer",
+      "priority": "critical",
+      "why": "Budget narrative and financial reporting not covered",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-04",
+      "category": "M&E / MEL",
+      "name": "Evaluation Terms of Reference",
+      "priority": "critical",
+      "why": "Mid-term and final evaluations require ToRs",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-05",
+      "category": "Brand & Portfolio",
+      "name": "Case Study / Assignment Narrative Writer",
+      "priority": "critical",
+      "why": "Project narratives for portfolio and proposals",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-06",
+      "category": "Communication",
+      "name": "Donor Email Templates",
+      "priority": "high",
+      "why": "Partially filled by PL-058 — extend with rejection and follow-up variants",
+      "frequency": "Very High"
+    },
+    {
+      "id": "GAP-07",
+      "category": "Proposal Writing",
+      "name": "Partnership Agreement Drafter",
+      "priority": "high",
+      "why": "Sub-grant and partnership agreements",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-08",
+      "category": "Research & Analysis",
+      "name": "OSINT & Stakeholder Mapping",
+      "priority": "high",
+      "why": "Actor mapping essential for Western Balkans",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-09",
+      "category": "Organizational Development",
+      "name": "Board Governance Reviewer",
+      "priority": "low",
+      "why": "OD consulting includes governance assessments",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-10",
+      "category": "AI & Automation",
+      "name": "n8n / Make Automation Designer",
+      "priority": "low",
+      "why": "Workflow automation beyond Python",
+      "frequency": "Medium",
+      "status": "filled",
+      "filled_by": "PL-063",
+      "filled_date": "2026-05-23"
+    },
+    {
+      "id": "GAP-11",
+      "category": "Capacity Building",
+      "name": "Needs Assessment Framework",
+      "priority": "high",
+      "why": "Every CB programme starts here — core gap",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-12",
+      "category": "M&E / MEL",
+      "name": "Participatory M&E Tools",
+      "priority": "high",
+      "why": "FGD guides, KII protocols — not covered",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-13",
+      "category": "Proposal Writing",
+      "name": "Non-EU Donor Concept Notes",
+      "priority": "low",
+      "why": "USAID, GIZ, SIDA need different formats",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-14",
+      "category": "Research & Analysis",
+      "name": "Policy Brief Writer",
+      "priority": "high",
+      "why": "Policy briefs are key advocacy output",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-15",
+      "category": "Workspace & Productivity",
+      "name": "Weekly Planning Prompt",
+      "priority": "high",
+      "why": "No planning/review prompt despite Notion integration",
+      "frequency": "Very High",
+      "status": "filled",
+      "filled_by": "PL-085",
+      "filled_date": "2026-05-23"
+    },
+    {
+      "id": "GAP-16",
+      "category": "M&E / MEL",
+      "name": "MEAL Framework Builder",
+      "priority": "high",
+      "why": "MEAL not covered",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-17",
+      "category": "Donor Reporting",
+      "name": "Audit Preparation Checklist",
+      "priority": "high",
+      "why": "Audit prep is high-stakes and not covered",
+      "frequency": "High",
+      "status": "filled",
+      "filled_by": "PL-083",
+      "filled_date": "2026-05-23"
+    },
+    {
+      "id": "GAP-18",
+      "category": "Communication",
+      "name": "Meeting Minutes Generator",
+      "priority": "high",
+      "why": "Partially filled by PL-065 (Coordination Pack) — extend with standalone minutes format",
+      "frequency": "Very High"
+    },
+    {
+      "id": "GAP-19",
+      "category": "Brand & Portfolio",
+      "name": "LinkedIn Content Calendar",
+      "priority": "low",
+      "why": "Regular brand content not in library",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-20",
+      "category": "Capacity Building",
+      "name": "Training Needs Assessment (TNA)",
+      "priority": "high",
+      "why": "TNA precedes every training design",
+      "frequency": "High"
+    },
+    {
+      "id": "GAP-21",
+      "category": "Research & Analysis",
+      "name": "Comparative Country Analysis",
+      "priority": "low",
+      "why": "Western Balkans context requires cross-country comparison",
+      "frequency": "Medium"
+    },
+    {
+      "id": "GAP-22",
+      "category": "Meta-Prompting",
+      "name": "Prompt Testing Protocol",
+      "priority": "high",
+      "why": "No systematic testing process for library prompts",
+      "frequency": "Medium",
+      "status": "filled",
+      "filled_by": "PL-072",
+      "filled_date": "2026-05-23"
+    },
+    {
+      "id": "GAP-23",
+      "category": "Project Management",
+      "name": "Lessons Learned Facilitator",
+      "priority": "low",
+      "why": "Structured lessons capture missing",
+      "frequency": "Medium"
+    }
+  ]
+}

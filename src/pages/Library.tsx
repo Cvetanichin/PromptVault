@@ -14,6 +14,8 @@ import { usePromptStore } from '@/stores/promptStore';
 import { ALL_CATEGORIES, ALL_MODELS } from '@/constants/mockData';
 import { cn } from '@/lib/utils';
 import emptyImg from '@/assets/empty-state.jpg';
+import type { PromptCategory, LLMModel } from '@/types';
+import type { PromptFilters } from '@/stores/promptStore';
 
 export default function Library() {
   const filters = usePromptStore((s) => s.filters);
@@ -50,7 +52,7 @@ export default function Library() {
 
         <Select
           value={filters.category || 'all'}
-          onValueChange={(v) => setCategory(v === 'all' ? null : (v as any))}
+          onValueChange={(v) => setCategory(v === 'all' ? null : (v as PromptCategory))}
         >
           <SelectTrigger className="h-8 w-36 border-border bg-muted/50 text-xs">
             <SelectValue placeholder="Category" />
@@ -67,7 +69,7 @@ export default function Library() {
 
         <Select
           value={filters.model || 'all'}
-          onValueChange={(v) => setModel(v === 'all' ? null : (v as any))}
+          onValueChange={(v) => setModel(v === 'all' ? null : (v as LLMModel))}
         >
           <SelectTrigger className="h-8 w-32 border-border bg-muted/50 text-xs">
             <SelectValue placeholder="Model" />
@@ -84,7 +86,7 @@ export default function Library() {
 
         <Select
           value={filters.sortBy}
-          onValueChange={(v) => setSortBy(v as any)}
+          onValueChange={(v) => setSortBy(v as PromptFilters['sortBy'])}
         >
           <SelectTrigger className="h-8 w-36 border-border bg-muted/50 text-xs">
             <SelectValue />

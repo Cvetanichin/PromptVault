@@ -1,16 +1,6 @@
-export type LLMModel = 'Claude' | 'GPT-4' | 'GPT-4o' | 'Gemini Pro' | 'Llama 3' | 'Mistral';
+export type LLMModel = string;
 
-export type PromptCategory =
-  | 'Coding'
-  | 'Writing'
-  | 'Analysis'
-  | 'Brainstorming'
-  | 'Data Extraction'
-  | 'Image Generation'
-  | 'Translation'
-  | 'Debugging'
-  | 'Summarization'
-  | 'Research';
+export type PromptCategory = string;
 
 export type EffectivenessRating = 1 | 2 | 3 | 4 | 5;
 

@@ -69,6 +69,8 @@ export interface ImportResult {
   warnings: string[];
 }
 
+type ImportItem = Record<string, unknown>;
+
 export function importFromJSON(content: string): ImportResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -82,7 +84,7 @@ export function importFromJSON(content: string): ImportResult {
       return { prompts: [], errors: ['Invalid format: expected an array of prompts or an object with a "prompts" key.'], warnings: [] };
     }
 
-    items.forEach((item: any, index: number) => {
+    items.forEach((item: ImportItem, index: number) => {
       const validated = validateAndNormalizePrompt(item, index);
       if (validated.prompt) {
         prompts.push(validated.prompt);
@@ -239,14 +241,14 @@ function createPromptFromText(text: string): Prompt | null {
   };
 }
 
-function validateAndNormalizePrompt(item: any, index: number): { prompt?: Prompt; error?: string; warning?: string } {
+function validateAndNormalizePrompt(item: ImportItem, index: number): { prompt?: Prompt; error?: string; warning?: string } {
   if (!item || typeof item !== 'object') {
     return { error: `Item ${index + 1}: Not a valid object.` };
   }
 
   // Minimum requirements: must have content or title
-  const content = item.content || item.prompt || item.text || '';
-  const title = item.title || item.name || '';
+  const content = String(item.content || item.prompt || item.text || '');
+  const title = String(item.title || item.name || '');
 
   if (!content && !title) {
     return { error: `Item ${index + 1}: Missing both title and content.` };
