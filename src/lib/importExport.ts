@@ -255,8 +255,8 @@ function validateAndNormalizePrompt(item: ImportItem, index: number): { prompt?:
   }
 
   const now = new Date().toISOString();
-  const category = item.category && CATEGORY_KEYWORDS[item.category as PromptCategory]
-    ? (item.category as PromptCategory)
+  const category = typeof item.category === 'string' && item.category.trim()
+    ? item.category
     : detectCategory(content || title);
 
   const models: LLMModel[] = Array.isArray(item.models)

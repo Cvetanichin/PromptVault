@@ -121,7 +121,7 @@ export default function AddPromptDialog() {
 
         <div className="mt-4 space-y-4">
           {/* Preset Selector */}
-          <PresetSelector category={category} onSelect={handlePresetSelect} />
+          <PresetSelector onSelect={handlePresetSelect} />
 
           <div>
             <label className="mb-1.5 block text-xs font-medium text-muted-foreground">

@@ -2,20 +2,16 @@ import { useState } from 'react';
 import { BookTemplate, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { PROMPT_PRESETS, getPresetsForCategory, type PromptPreset } from '@/constants/presets';
-import type { PromptCategory } from '@/types';
+import { PROMPT_PRESETS, type PromptPreset } from '@/constants/presets';
 
 interface PresetSelectorProps {
-  category?: string;
   onSelect: (preset: PromptPreset) => void;
 }
 
-export default function PresetSelector({ category, onSelect }: PresetSelectorProps) {
+export default function PresetSelector({ onSelect }: PresetSelectorProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const presets = category
-    ? getPresetsForCategory(category as PromptCategory)
-    : PROMPT_PRESETS;
+  const presets = PROMPT_PRESETS;
 
   if (presets.length === 0) return null;
 
@@ -29,11 +25,9 @@ export default function PresetSelector({ category, onSelect }: PresetSelectorPro
         <span className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
           <BookTemplate className="size-3.5 text-secondary" />
           Use a Preset Template
-          {category && (
-            <span className="rounded bg-secondary/10 px-1.5 py-0.5 text-[10px] text-secondary">
-              {presets.length} available
-            </span>
-          )}
+          <span className="rounded bg-secondary/10 px-1.5 py-0.5 text-[10px] text-secondary">
+            {presets.length} available
+          </span>
         </span>
         {expanded ? (
           <ChevronUp className="size-3.5 text-muted-foreground" />
@@ -49,7 +43,6 @@ export default function PresetSelector({ category, onSelect }: PresetSelectorPro
               <PresetCard
                 key={preset.id}
                 preset={preset}
-                showCategory={!category}
                 onSelect={() => {
                   onSelect(preset);
                   setExpanded(false);
@@ -65,11 +58,9 @@ export default function PresetSelector({ category, onSelect }: PresetSelectorPro
 
 function PresetCard({
   preset,
-  showCategory,
   onSelect,
 }: {
   preset: PromptPreset;
-  showCategory: boolean;
   onSelect: () => void;
 }) {
   return (
@@ -90,11 +81,9 @@ function PresetCard({
       <p className="mt-1 text-[10px] leading-relaxed text-muted-foreground line-clamp-2">
         {preset.description}
       </p>
-      {showCategory && (
-        <span className="mt-1.5 rounded bg-accent px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-foreground">
-          {preset.category}
-        </span>
-      )}
+      <span className="mt-1.5 rounded bg-accent px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-foreground">
+        {preset.category}
+      </span>
     </button>
   );
 }
