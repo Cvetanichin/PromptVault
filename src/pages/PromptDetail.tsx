@@ -10,6 +10,17 @@ import {
   FileDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { usePromptStore } from '@/stores/promptStore';
 import ModelBadge from '@/components/features/ModelBadge';
@@ -110,9 +121,27 @@ export default function PromptDetail() {
                 <Button variant="ghost" size="icon" onClick={handleCopy} aria-label="Copy prompt">
                   <Copy className="size-4 text-muted-foreground" />
                 </Button>
-                <Button variant="ghost" size="icon" onClick={handleDelete} aria-label="Delete prompt">
-                  <Trash2 className="size-4 text-destructive/70" />
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="ghost" size="icon" aria-label="Delete prompt">
+                      <Trash2 className="size-4 text-destructive/70" />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Delete "{prompt.title}"?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This permanently removes the prompt and its version history from your vault. This action cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
 
