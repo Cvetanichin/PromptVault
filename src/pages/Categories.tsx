@@ -10,6 +10,7 @@ import {
   Bug,
   FileText,
   Microscope,
+  Folder,
 } from 'lucide-react';
 import { usePromptStats, type CategoryStat } from '@/hooks/usePromptStats';
 import { usePromptStore } from '@/stores/promptStore';
@@ -46,8 +47,10 @@ const categoryColors: Record<PromptCategory, string> = {
 function CategoryCard({ stat }: { stat: CategoryStat }) {
   const prompts = usePromptStore((s) => s.prompts);
   const setCategory = usePromptStore((s) => s.setCategory);
-  const Icon = categoryIcons[stat.category];
-  const colorClass = categoryColors[stat.category];
+  const Icon = categoryIcons[stat.category] ?? Folder;
+  const colorClass =
+    categoryColors[stat.category] ??
+    'from-slate-500/20 to-slate-500/5 border-slate-500/20';
 
   const catPrompts = prompts.filter((p) => p.category === stat.category);
   const topPrompt = [...catPrompts].sort(
