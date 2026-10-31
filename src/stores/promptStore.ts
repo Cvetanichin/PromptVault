@@ -87,6 +87,8 @@ export const usePromptStore = create<PromptState & PromptActions>()(
             (p) =>
               p.title.toLowerCase().includes(q) ||
               p.description.toLowerCase().includes(q) ||
+              p.content.toLowerCase().includes(q) ||
+              p.category.toLowerCase().includes(q) ||
               p.tags.some((t) => t.toLowerCase().includes(q))
           );
         }
